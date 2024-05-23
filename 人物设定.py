@@ -1,6 +1,7 @@
 from openai import OpenAI
 import os
-ROOT_PATH='./柳生'
+import sys
+ROOT_PATH=sys.argv[1]
 # 初始化 OpenAI 客户端，使用你的 API 密钥
 client = OpenAI(api_key="sk-3sq88ly5bVhIQNbuqPi7xPiLlG5mtNrucHI0LbHK6RnDmDGb", base_url="https://api.moonshot.cn/v1")
 

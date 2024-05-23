@@ -1,6 +1,7 @@
 from openai import OpenAI
 import re
 # 初始化 OpenAI 客户端，使用你的 API 密钥
+import sys
 
 client = OpenAI(api_key="sk-029ef31805dc4a2e944e89a161367a8e", base_url="https://api.deepseek.com")
 
@@ -102,7 +103,6 @@ history.append(
      请你将三重引号内的内容展开为一段大约3000字的小说描写，需要符合人物性格设定，根据需要加入一些语言外貌心理描写，语言生动,注意不要出现逻辑错误,注意不要写其他分镜的内容"%(故事背景,分镜内容,人物设定)},
     )
 
-k=3
 for scene in scenes[9*k-9:9*k]:
     #history=history_checkpoint.copy()
     result=chat('%s\n\"\"\"%s\"\"\""'%scene, history)

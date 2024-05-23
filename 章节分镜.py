@@ -1,10 +1,11 @@
 from openai import OpenAI
 import os
+import sys
 
 # 初始化 OpenAI 客户端，使用你的 API 密钥
 
 client = OpenAI(api_key="sk-029ef31805dc4a2e944e89a161367a8e", base_url="https://api.deepseek.com")
-ROOT_PATH='./柳生'
+ROOT_PATH=sys.argv[1]
 
 # 初始系统消息，定义助手的角色和能力
 system_message = {
@@ -64,9 +65,9 @@ with open(os.path.join(ROOT_PATH,'故事背景.txt'), 'r', encoding='utf-8') as 
 
 result=chat("假设你是一名优秀的网络小说写手，\
     请帮我写一部小说，小说的故事背景如下：%s\
-        ,请将整部小说内容分成10章，你只需要概括描述每一章的内容。整部小说出现的主要人物包含%s,不必每个人物都出现在每个章节中,故事情节需要比较曲折，富有悬念"%(故事背景,人物设定), history)
+        ,请将整部小说内容分成8章，你只需要概括描述每一章的内容。整部小说出现的主要人物包含%s,不必每个人物都出现在每个章节中,故事情节需要比较曲折，富有悬念"%(故事背景,人物设定), history)
 func(result,filename = '章节内容.txt',slp=10)
 
-for i in range(1,10):
+for i in range(1,9):
     result=chat("请将第%i章内容分3个场景分镜叙述。每个分镜需要描写出场人物及故事梗概,注意请以第几章第几分镜作为开头"%i, history)
     func(result,filename = '分镜.txt',slp=10)
